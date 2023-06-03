@@ -5,7 +5,7 @@
             "name": "ROOT"
         },
         {
-            "path": "utils/spawn",
+            "path": "utils/utility",
         },
         {
             "path": "packages/iconify-icon",

@@ -1,6 +1,6 @@
 import { resolve } from "path";
 
-import { node } from "..";
+import { node } from "../../node-sync";
 
 describe("node", () => {
   it("node-sync.js should run successfully.", () => {
