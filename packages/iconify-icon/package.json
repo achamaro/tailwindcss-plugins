@@ -1,0 +1,60 @@
+{
+  "name": "@achamaro/tailwindcss-iconify-icon",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.0",
+  "description": "Tailwind CSS plugin for Iconify Icon",
+  "keywords": [
+    "tailwindcss",
+    "iconify",
+    "icon"
+  ],
+  "type": "module",
+  "author": "achamaro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/achamaro/tailwindcss-iconify-icon.git",
+    "directory": "packages/tailwindcss-iconify-icon"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "iconify-icon": "^1.0.7",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "tsconfig": "workspace:*",
+    "tsup": "^6.7.0",
+    "vitest": "^0.30.1"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@8.6.0",
+  "volta": {
+    "node": "18.16.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "ROOT"
+        },
+        {
+            "path": "utils/spawn",
+        },
+        {
+            "path": "packages/iconify-icon",
+        },
+        {
+            "path": "examples/nextjs",
+        }
+    ],
+    "settings": {
+        "typescript.tsdk": "./node_modules/typescript/lib"
+    }
+}
