@@ -16,9 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@achamaro/tailwindcss-iconify-icon")({
-      downloadDir: resolve(__dirname, "src/assets/icons"),
-    }),
-  ],
+  plugins: [require("@achamaro/tailwindcss-iconify-icon")()],
 };

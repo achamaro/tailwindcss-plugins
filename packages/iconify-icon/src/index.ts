@@ -11,16 +11,16 @@ import generateSvgDataUri from "./svg";
 const SKIP_WRITE_FILE = process.env.VSCODE_PID != null;
 
 export type IconifyIconPluginOptions = {
-  downloadDir: string;
+  downloadDir?: string;
   prefix?: string;
   extraProperties?: Record<string, string>;
 };
 
 export default function IconifyIconPlugin({
-  downloadDir,
+  downloadDir = "src/assets/icons",
   prefix = "i",
   extraProperties = { display: "inline-block" },
-}: IconifyIconPluginOptions) {
+}: IconifyIconPluginOptions = {}) {
   downloadDir = resolve(downloadDir);
 
   if (!SKIP_WRITE_FILE && !fs.existsSync(downloadDir)) {
