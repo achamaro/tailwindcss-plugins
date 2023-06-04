@@ -1,6 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { clsx, type ClassValue } from "clsx";
+import { extendTailwindMerge } from "tailwind-merge";
+import { useState } from "react";
+import twMergeIconifyIcon from "@achamaro/tailwindcss-iconify-icon/tailwind-merge-plugin";
+
+const twMerge = extendTailwindMerge(twMergeIconifyIcon());
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export default function Home() {
+  const [sleeping, setSleeping] = useState(false);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -34,6 +48,14 @@ export default function Home() {
           <i className="i-[twemoji/grinning-face] hover:i-[twemoji/flushed-face]"></i>
           <i className="text-sky-400 i-[twemoji/grinning-face] hover:i-[twemoji/grinning-face]/mask"></i>
           <i className="text-gray-600 i-[simple-icons/iconify] hover:text-sky-400"></i>
+          <button className="flex" onClick={() => setSleeping((v) => !v)}>
+            <i
+              className={cn(
+                "i-[twemoji/grinning-face]",
+                sleeping && "i-[twemoji/sleeping-face]"
+              )}
+            ></i>
+          </button>
         </div>
       </div>
 
