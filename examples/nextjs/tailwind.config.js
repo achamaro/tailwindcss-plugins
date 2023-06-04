@@ -1,3 +1,5 @@
+const { resolve } = require("path");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,5 +16,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@achamaro/tailwindcss-iconify-icon")()],
+  plugins: [
+    require("@achamaro/tailwindcss-iconify-icon")({
+      downloadDir: resolve(__dirname, "src/assets/icons"),
+    }),
+  ],
 };

@@ -15,11 +15,10 @@ export function get(url: string | URL) {
         let data = "";
 
         res.on("data", (chunk) => {
-          data += chunk;
+          if (chunk) data += chunk;
         });
 
         res.on("end", () => {
-          console.log(status, data);
           if (status < 200 || status >= 300) {
             reject(new RequestError(data, status));
             return;
