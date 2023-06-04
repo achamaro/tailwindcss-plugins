@@ -1,20 +1,22 @@
 {
-    "folders": [
-        {
-            "path": ".",
-            "name": "ROOT"
-        },
-        {
-            "path": "utils/utility",
-        },
-        {
-            "path": "packages/iconify-icon",
-        },
-        {
-            "path": "examples/nextjs",
-        }
-    ],
-    "settings": {
-        "typescript.tsdk": "./node_modules/typescript/lib"
+  "folders": [
+    {
+      "path": ".",
+      "name": "ROOT"
+    },
+    {
+      "path": "utils/utility"
+    },
+    {
+      "path": "packages/iconify-icon"
+    },
+    {
+      "path": "examples/nextjs"
     }
+  ],
+  "settings": {
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

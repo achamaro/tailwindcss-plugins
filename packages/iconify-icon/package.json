@@ -40,7 +40,7 @@
   "typesVersions": {
     "*": {
       "tailwind-merge-plugin": [
-        "dist/tailwind-merge-plugin"
+        "dist/tailwind-merge-plugin.d.ts"
       ]
     }
   },

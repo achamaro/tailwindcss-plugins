@@ -8,7 +8,7 @@ import twMergeIconifyIcon from "@achamaro/tailwindcss-iconify-icon/tailwind-merg
 
 const twMerge = extendTailwindMerge(twMergeIconifyIcon());
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
