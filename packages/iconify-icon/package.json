@@ -13,11 +13,11 @@
   "type": "module",
   "author": "achamaro",
   "license": "MIT",
-  "homepage": "https://github.com/achamaro/tailwindcss-plugins/tree/main/packages/tailwindcss-iconify-icon#readme",
+  "homepage": "https://github.com/achamaro/tailwindcss-plugins/tree/main/packages/iconify-icon#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/achamaro/tailwindcss-iconify-icon.git",
-    "directory": "packages/tailwindcss-iconify-icon"
+    "url": "git+https://github.com/achamaro/tailwindcss-plugins.git",
+    "directory": "packages/iconify-icon"
   },
   "files": [
     "dist"
