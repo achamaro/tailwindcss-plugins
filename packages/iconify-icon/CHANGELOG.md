@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.0.3
+
+### Patch Changes
+
+- 0bb3f36: fix package.json repository URL
+
 ## 0.0.2
 
 ### Patch Changes
