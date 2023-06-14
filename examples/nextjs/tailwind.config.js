@@ -16,5 +16,11 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@achamaro/tailwindcss-iconify-icon")()],
+  plugins: [
+    require("@achamaro/tailwindcss-iconify-icon")({
+      customSvg: {
+        custom: "src/assets/custom-icons",
+      },
+    }),
+  ],
 };
