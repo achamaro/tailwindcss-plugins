@@ -5,7 +5,7 @@ import { CSSRuleObject } from "tailwindcss/types/config";
 import { node } from "utility/node-sync";
 
 import iconNames from "./icon-names";
-import generateSvgDataUri from "./svg";
+import { generateSvgDataUri, parseSvg } from "./svg";
 
 // skip writing file when running in VSCode.
 const SKIP_WRITE_FILE = process.env.VSCODE_PID != null;
@@ -14,14 +14,17 @@ export type IconifyIconPluginOptions = {
   downloadDir?: string;
   prefix?: string;
   extraProperties?: Record<string, string>;
+  customSvg?: Record<string, string>;
 };
 
 export default function IconifyIconPlugin({
   downloadDir = "src/assets/icons",
   prefix = "i",
   extraProperties = { display: "inline-block" },
+  customSvg = {},
 }: IconifyIconPluginOptions = {}) {
   downloadDir = resolve(downloadDir);
+  Object.entries(customSvg).forEach(([k, v]) => (customSvg[k] = resolve(v)));
 
   if (!SKIP_WRITE_FILE && !fs.existsSync(downloadDir)) {
     fs.mkdirSync(downloadDir, { recursive: true });
@@ -51,15 +54,31 @@ export default function IconifyIconPlugin({
             return {};
           }
 
+          const [iconSet, iconName] = path.split("/");
+
           const rule: CSSRuleObject = {};
 
           let mask = true;
           let data = "";
+
           if (SKIP_WRITE_FILE) {
             // prevent VSCode extensions from sending request.
-            data = `https://api.iconify.design/${path}.svg`;
+            if (customSvg[iconSet] != null) {
+              data = `${path}.svg`;
+            } else {
+              data = `https://api.iconify.design/${path}.svg`;
+            }
+          } else if (customSvg[iconSet]) {
+            // read SVG file from local directory.
+            const svgPath = resolve(customSvg[iconSet], `${iconName}.svg`);
+            const svg = fs.readFileSync(svgPath, "utf8");
+            const parsed = parseSvg(svg);
+            data = parsed.data;
 
-            rule["aspect-ratio"] = `1/1`;
+            const { width, height } = parsed;
+            rule["aspect-ratio"] = `${width}/${height}`;
+
+            mask = svg.includes("currentColor");
           } else {
             // fetch the Iconify icon JSON.
             const icon = node(resolve(__dirname, "fetch-script"), [

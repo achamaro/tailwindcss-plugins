@@ -63,6 +63,21 @@ The following styles are applied by default. This parameter can be used to overr
 }
 ```
 
+### customSvg
+
+- **Type**: `Record<string, string>`
+- **Default**: `{}`
+
+This is a map of the Icon Set Name and the directory where SVG files are stored.
+
+If specified as follows:
+
+```
+{ custom: "src/assets/custom" }
+```
+
+`i-[custom/icon]` will display `src/assets/custom/icon.svg`
+
 ## Usage
 
 ### Syntax

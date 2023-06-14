@@ -1,7 +1,39 @@
 import type { IconifyIcon } from "iconify-icon";
+import { optimize } from "svgo";
 
-export default function generateSvgDataUri(icon: IconifyIcon) {
-  return `data:image/svg+xml;utf8,${encodeSvg(generateSvg(icon))}`;
+export function generateSvgDataUri(icon: IconifyIcon) {
+  return generateDataUri(generateSvg(icon));
+}
+
+export function parseSvg(svg: string) {
+  const { data } = optimize(svg, {
+    plugins: [
+      {
+        name: "preset-default",
+        params: {
+          overrides: {
+            removeViewBox: false,
+          },
+        },
+      },
+      {
+        name: "removeDimensions",
+      },
+    ],
+  });
+
+  const viewBox = data.match(/viewBox=['"]([0-9 ,]+)/i)?.[1] ?? "0 0 1 1";
+  const [, , width, height] = viewBox.split(/[ ,]+/).map(Number);
+
+  return {
+    data: generateDataUri(data),
+    width,
+    height,
+  };
+}
+
+function generateDataUri(svg: string) {
+  return `data:image/svg+xml;utf8,${encodeSvg(svg)}`;
 }
 
 function generateSvg({ width = 16, height = 16, body }: IconifyIcon) {
