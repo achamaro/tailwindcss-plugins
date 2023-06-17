@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.1.2
+
+### Patch Changes
+
+- b479041: Fix IconifyIcon types
+
 ## 0.1.1
 
 ### Patch Changes
