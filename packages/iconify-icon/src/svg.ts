@@ -1,7 +1,12 @@
-import type { IconifyIcon } from "iconify-icon";
 import { optimize } from "svgo";
 
-export function generateSvgDataUri(icon: IconifyIcon) {
+type IconData = {
+  body: string;
+  width?: number;
+  height?: number;
+};
+
+export function generateSvgDataUri(icon: IconData) {
   return generateDataUri(generateSvg(icon));
 }
 
@@ -36,7 +41,7 @@ function generateDataUri(svg: string) {
   return `data:image/svg+xml;utf8,${encodeSvg(svg)}`;
 }
 
-function generateSvg({ width = 16, height = 16, body }: IconifyIcon) {
+function generateSvg({ width = 16, height = 16, body }: IconData) {
   return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
 }
 
