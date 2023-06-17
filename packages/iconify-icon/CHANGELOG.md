@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.1.1
+
+### Patch Changes
+
+- cd4dbb9: Add disableSuggestion option
+
 ## 0.1.0
 
 ### Minor Changes
