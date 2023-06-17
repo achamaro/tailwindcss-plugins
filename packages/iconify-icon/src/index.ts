@@ -7,6 +7,8 @@ import { node } from "utility/node-sync";
 import iconNames from "./icon-names";
 import { generateSvgDataUri, parseSvg } from "./svg";
 
+export { generateSvgDataUri, parseSvg };
+
 // skip writing file when running in VSCode.
 const SKIP_WRITE_FILE = process.env.VSCODE_PID != null;
 
@@ -15,6 +17,7 @@ export type IconifyIconPluginOptions = {
   prefix?: string;
   extraProperties?: Record<string, string>;
   customSvg?: Record<string, string>;
+  disableSuggestion?: boolean;
 };
 
 export default function IconifyIconPlugin({
@@ -22,6 +25,7 @@ export default function IconifyIconPlugin({
   prefix = "i",
   extraProperties = { display: "inline-block" },
   customSvg = {},
+  disableSuggestion = false,
 }: IconifyIconPluginOptions = {}) {
   downloadDir = resolve(downloadDir);
   Object.entries(customSvg).forEach(([k, v]) => (customSvg[k] = resolve(v)));
@@ -31,9 +35,9 @@ export default function IconifyIconPlugin({
   }
 
   return plugin(({ addUtilities, matchUtilities }) => {
-    const values = Object.fromEntries(
-      iconNames(downloadDir).map((v) => [`[${v}]`, v])
-    );
+    const values = disableSuggestion
+      ? undefined
+      : Object.fromEntries(iconNames(downloadDir).map((v) => [`[${v}]`, v]));
 
     addUtilities({
       [`[class^="${prefix}-["],[class*=" ${prefix}-["],[class*=":${prefix}-["]`]:

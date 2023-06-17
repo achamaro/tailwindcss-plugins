@@ -78,6 +78,13 @@ If specified as follows:
 
 `i-[custom/icon]` will display `src/assets/custom/icon.svg`
 
+### disableSuggestion
+
+- **Type**: `boolean`
+- **Default**: `false`
+
+Disable suggestion.
+
 ## Usage
 
 ### Syntax
