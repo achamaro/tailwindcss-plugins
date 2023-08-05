@@ -14,4 +14,4 @@ confirm: `enter`
 
 ### Commit
 
-When merged to the main branch, GitHub Actions will automatically publish it.
+When merged into the main branch, a pull request is automatically created by GitHub Actions. When the pull request is merged, it is automatically published by GitHub Actions.
