@@ -21,6 +21,7 @@ module.exports = {
       customSvg: {
         custom: "src/assets/custom-icons",
       },
+      // enableSuggestion: true,
     }),
   ],
 };

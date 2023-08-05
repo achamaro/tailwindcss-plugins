@@ -78,12 +78,12 @@ If specified as follows:
 
 `i-[custom/icon]` will display `src/assets/custom/icon.svg`
 
-### disableSuggestion
+### enableSuggestion
 
 - **Type**: `boolean`
 - **Default**: `false`
 
-Disable suggestion.
+Enable suggestion.
 
 ## Usage
 
@@ -121,7 +121,11 @@ const twMerge = extendTailwindMerge(twMergeIconifyIcon());
 
 ### VSCode Intellisense
 
-The VSCode extension will display the icons that exist at the time tailwind.config.js is loaded as candidates. If you want to display the newly added icons as candidates, please run Reload Window from the Command Palette.
+If you set `enableSuggestion` to `true`, The VSCode extension `Tailwind CSS IntelliSense` will display the icons that exist at the time tailwind.config.js is loaded as candidates. If you want to display the newly added icons as candidates, please run Reload Window from the Command Palette.
+
+Alternatively, you can use the [TailwindCSS Iconify Icon IntelliSense](https://marketplace.visualstudio.com/items?itemName=achamaro.tailwindcss-iconify-icon-intellisense).
+
+![tailwindcss-iconify-icon-intellisense](tailwindcss-iconify-icon-intellisense.png)
 
 ## Credit
 

@@ -17,7 +17,7 @@ export type IconifyIconPluginOptions = {
   prefix?: string;
   extraProperties?: Record<string, string>;
   customSvg?: Record<string, string>;
-  disableSuggestion?: boolean;
+  enableSuggestion?: boolean;
 };
 
 export default function IconifyIconPlugin({
@@ -25,7 +25,7 @@ export default function IconifyIconPlugin({
   prefix = "i",
   extraProperties = { display: "inline-block" },
   customSvg = {},
-  disableSuggestion = false,
+  enableSuggestion = false,
 }: IconifyIconPluginOptions = {}) {
   downloadDir = resolve(downloadDir);
   Object.entries(customSvg).forEach(([k, v]) => (customSvg[k] = resolve(v)));
@@ -35,7 +35,7 @@ export default function IconifyIconPlugin({
   }
 
   return plugin(({ addUtilities, matchUtilities }) => {
-    const values = disableSuggestion
+    const values = !enableSuggestion
       ? undefined
       : Object.fromEntries(iconNames(downloadDir).map((v) => [`[${v}]`, v]));
 
