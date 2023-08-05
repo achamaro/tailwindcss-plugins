@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.2.0
+
+### Minor Changes
+
+- 8dc24a2: Suggestion is disabled by default.
+
 ## 0.1.2
 
 ### Patch Changes
