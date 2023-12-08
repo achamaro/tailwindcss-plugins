@@ -1,7 +1,11 @@
 import https from "https";
 
 export class RequestError extends Error {
-  constructor(message: string, public statusCode?: number) {
+  constructor(
+    message: string,
+    public url: string | URL,
+    public statusCode?: number
+  ) {
     super(message);
   }
 }
@@ -20,7 +24,12 @@ export function get(url: string | URL) {
 
         res.on("end", () => {
           if (status < 200 || status >= 300) {
-            reject(new RequestError(data, status));
+            reject(new RequestError(data, url, status));
+            return;
+          }
+          // iconify api returns a "404" string in the response body with status 200 OK
+          if (data === "404") {
+            reject(new RequestError(data, url, 404));
             return;
           }
 
