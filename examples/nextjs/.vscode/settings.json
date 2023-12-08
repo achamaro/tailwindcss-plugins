@@ -8,6 +8,6 @@
     "strings": true
   },
   "tailwindcssIconifyIconIntelliSense.customSvg": {
-    "custom": "src/assets/custom-icons"
+    "deprecated-custom": "src/assets/custom-icons"
   }
 }
