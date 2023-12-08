@@ -32,12 +32,12 @@ export function parseIconifyJSON(
 /**
  * アイコンデータを取得する
  * @param pathname アイコン名
- * @param downloadDir アイコンデータダウンロードディレクトリ
+ * @param iconDir アイコンデータダウンロードディレクトリ
  * @returns アイコンデータ
  */
 export async function fetchIcon(
   pathname: string,
-  downloadDir = "src/assets/icons"
+  iconDir = "src/assets/icons"
 ): Promise<IconifyIcon | undefined> {
   const [prefix, icon] = pathname.split("/");
   if (!prefix || !icon) {
@@ -45,7 +45,7 @@ export async function fetchIcon(
   }
 
   // ファイルが存在する場合はファイルを読み込んで返す
-  const dirname = resolve(downloadDir, prefix);
+  const dirname = resolve(iconDir, prefix);
   const filename = resolve(dirname, `${icon}.json`);
   if (fs.existsSync(filename)) {
     return JSON.parse(fs.readFileSync(filename, "utf-8"));

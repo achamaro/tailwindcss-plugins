@@ -13,6 +13,7 @@ export { generateSvgDataUri, parseSvg };
 const SKIP_WRITE_FILE = process.env.VSCODE_PID != null;
 
 export type IconifyIconPluginOptions = {
+  iconDir?: string;
   downloadDir?: string;
   prefix?: string;
   extraProperties?: Record<string, string>;
@@ -21,23 +22,24 @@ export type IconifyIconPluginOptions = {
 };
 
 export default function IconifyIconPlugin({
-  downloadDir = "src/assets/icons",
+  iconDir,
+  downloadDir,
   prefix = "i",
   extraProperties = { display: "inline-block" },
   customSvg = {},
   enableSuggestion = false,
 }: IconifyIconPluginOptions = {}) {
-  downloadDir = resolve(downloadDir);
+  const dir = resolve(iconDir ?? downloadDir ?? "src/assets/icons");
   Object.entries(customSvg).forEach(([k, v]) => (customSvg[k] = resolve(v)));
 
-  if (!SKIP_WRITE_FILE && !fs.existsSync(downloadDir)) {
-    fs.mkdirSync(downloadDir, { recursive: true });
+  if (!SKIP_WRITE_FILE && !fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
 
   return plugin(({ addUtilities, matchUtilities }) => {
     const values = !enableSuggestion
       ? undefined
-      : Object.fromEntries(iconNames(downloadDir).map((v) => [`[${v}]`, v]));
+      : Object.fromEntries(iconNames(dir).map((v) => [`[${v}]`, v]));
 
     addUtilities({
       [`[class^="${prefix}-["],[class*=" ${prefix}-["],[class*=":${prefix}-["]`]:
@@ -67,11 +69,7 @@ export default function IconifyIconPlugin({
 
           if (SKIP_WRITE_FILE) {
             // prevent VSCode extensions from sending request.
-            if (customSvg[iconSet] != null) {
-              data = `${path}.svg`;
-            } else {
-              data = `https://api.iconify.design/${path}.svg`;
-            }
+            data = `${path}.svg`;
           } else if (customSvg[iconSet]) {
             // read SVG file from local directory.
             const svgPath = resolve(customSvg[iconSet], `${iconName}.svg`);
@@ -83,12 +81,20 @@ export default function IconifyIconPlugin({
             rule["aspect-ratio"] = `${width}/${height}`;
 
             mask = svg.includes("currentColor");
+          } else if (fs.existsSync(resolve(dir, `${path}.svg`))) {
+            // read SVG file from local directory.
+            const svgPath = resolve(dir, `${path}.svg`);
+            const svg = fs.readFileSync(svgPath, "utf8");
+            const parsed = parseSvg(svg);
+            data = parsed.data;
+
+            const { width, height } = parsed;
+            rule["aspect-ratio"] = `${width}/${height}`;
+
+            mask = svg.includes("currentColor");
           } else {
             // fetch the Iconify icon JSON.
-            const icon = node(resolve(__dirname, "fetch-script"), [
-              downloadDir,
-              path,
-            ]);
+            const icon = node(resolve(__dirname, "fetch-script"), [dir, path]);
 
             // generate SVG data URI from icon JSON.
             data = generateSvgDataUri(icon);

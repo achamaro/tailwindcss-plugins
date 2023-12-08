@@ -28,28 +28,29 @@ module.exports = {
 };
 ```
 
-### Options
+## Options
 
-### downloadDir
+### iconDir
 
 - **Type**: `string`
 - **Default**: `src/assets/icons`
 
-The directory to download the icon file.
+The directory for downloading icon files and storing arbitrary SVG files.
+`i-[custom/icon]` will display `src/assets/icons/custom/icon.svg` if the SVG file exists.
 
 ### prefix
 
 - **Type**: `string`
 - **Default**: `"i"`
 
-class name prefix.
+Class name prefix.
 
 ### extraProperties
 
 - **Type**: `Record<string, string>`
 - **Default**: `{ display: "inline-block" }`
 
-The following styles are applied by default. This parameter can be used to override them.
+By default, the following styles are applied:
 
 ```css
 [class^="{prefix}-["],
@@ -63,7 +64,27 @@ The following styles are applied by default. This parameter can be used to overr
 }
 ```
 
-### customSvg
+This parameter can be used to override them.
+
+### enableSuggestion
+
+- **Type**: `boolean`
+- **Default**: `false`
+
+Enable icon suggestions.
+
+### downloadDir (deprecated)
+
+This option is deprecated and will be removed in future versions. Please use `iconDir` instead.
+
+- **Type**: `string`
+- **Default**: `src/assets/icons`
+
+The directory for downloading icon files.
+
+### customSvg (deprecated)
+
+This option is deprecated and will be removed in future versions. Please use `iconDir` instead.
 
 - **Type**: `Record<string, string>`
 - **Default**: `{}`
@@ -77,13 +98,6 @@ If specified as follows:
 ```
 
 `i-[custom/icon]` will display `src/assets/custom/icon.svg`
-
-### enableSuggestion
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-Enable suggestion.
 
 ## Usage
 
@@ -121,7 +135,7 @@ const twMerge = extendTailwindMerge(twMergeIconifyIcon());
 
 ### VSCode Intellisense
 
-If you set `enableSuggestion` to `true`, The VSCode extension `Tailwind CSS IntelliSense` will display the icons that exist at the time tailwind.config.js is loaded as candidates. If you want to display the newly added icons as candidates, please run Reload Window from the Command Palette.
+If you set `enableSuggestion` to `true`, the VSCode extension `Tailwind CSS IntelliSense` will display the icons that exist at the time tailwind.config.js is loaded as candidates. If you want to display the newly added icons as candidates, please run Reload Window from the Command Palette.
 
 Alternatively, you can use the [TailwindCSS Iconify Icon IntelliSense](https://marketplace.visualstudio.com/items?itemName=achamaro.tailwindcss-iconify-icon-intellisense).
 
