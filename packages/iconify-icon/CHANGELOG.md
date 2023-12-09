@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.3.0
+
+### Minor Changes
+
+- b45cfd7: Iconify icons and arbitrary SVG files are now managed within the same directory.
+
 ## 0.2.0
 
 ### Minor Changes
