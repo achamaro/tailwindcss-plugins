@@ -7,10 +7,12 @@ export type IconifyIconPluginOptions = {
 export default function IconifyIconPlugin({
   prefix = "i",
 }: IconifyIconPluginOptions = {}) {
-  return (config: Config): Config => {
+  return (config: Config<string, string>): Config<string, string> => {
     return mergeConfigs(config, {
-      classGroups: {
-        [prefix]: [{ [prefix]: [validators.isArbitraryValue] }],
+      extend: {
+        classGroups: {
+          [prefix]: [{ [prefix]: [validators.isArbitraryValue] }],
+        },
       },
     });
   };
