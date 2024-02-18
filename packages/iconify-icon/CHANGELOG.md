@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.4.0
+
+### Minor Changes
+
+- 2ffb084: Supports tailwind-merge v2
+
 ## 0.3.0
 
 ### Minor Changes
