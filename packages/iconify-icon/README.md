@@ -2,6 +2,8 @@
 
 ![npm (scoped)](https://img.shields.io/npm/v/@achamaro/tailwindcss-iconify-icon)
 
+[**README (Japanese)**](README_ja.md)
+
 [Iconify]: https://iconify.design/
 
 This plugin uses the [Iconify] API to automatically download icons specified by arbitrary value, so you do not need to install an icon set in advance.
