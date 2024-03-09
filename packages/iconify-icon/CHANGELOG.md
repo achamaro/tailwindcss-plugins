@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.4.1
+
+### Patch Changes
+
+- 5fe551d: add README_ja.md
+
 ## 0.4.0
 
 ### Minor Changes
