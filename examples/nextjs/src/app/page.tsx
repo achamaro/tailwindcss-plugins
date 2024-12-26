@@ -59,7 +59,7 @@ export default function Home() {
           <i className="i-[deprecated-custom/tailwindcss-icon]"></i>
           <i className="i-[deprecated-custom/tailwindcss] hover:text-cyan-400"></i>
           <i className="i-[custom/tailwindcss-icon]"></i>
-          <i className="i-[custom/tailwindcss] hover:text-cyan-400"></i>
+          <i className="h-5 i-[custom/tailwindcss] hover:text-cyan-400"></i>
         </div>
       </div>
 

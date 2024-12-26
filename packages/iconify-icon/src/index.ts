@@ -42,7 +42,7 @@ export default function IconifyIconPlugin({
       : Object.fromEntries(iconNames(dir).map((v) => [`[${v}]`, v]));
 
     addUtilities({
-      [`[class^="${prefix}-["],[class*=" ${prefix}-["],[class*=":${prefix}-["]`]:
+      [`:where([class^="${prefix}-["],[class*=" ${prefix}-["],[class*=":${prefix}-["])`]:
         {
           "background-size": "100% 100%",
           "background-repeat": "no-repeat",
