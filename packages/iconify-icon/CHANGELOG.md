@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.5.1
+
+### Patch Changes
+
+- 5cf1ff2: Updated documentation
+
 ## 0.5.0
 
 ### Minor Changes
