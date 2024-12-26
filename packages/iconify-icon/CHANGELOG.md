@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.5.0
+
+### Minor Changes
+
+- bd780d9: Changed to use :where() pseudo-class for icon element selector list
+
 ## 0.4.1
 
 ### Patch Changes
