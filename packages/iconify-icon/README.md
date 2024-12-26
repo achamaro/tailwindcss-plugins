@@ -2,11 +2,45 @@
 
 ![npm (scoped)](https://img.shields.io/npm/v/@achamaro/tailwindcss-iconify-icon)
 
-[**README (Japanese)**](README_ja.md)
+[Tailwind CSS]: https://tailwindcss.com/
+[arbitrary values]: https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values
+[Iconify API]: https://iconify.design/docs/api/
+[tailwind merge]: https://github.com/dcastil/tailwind-merge
 
-[Iconify]: https://iconify.design/
+[**README (日本語)**](README_ja.md)
 
-This plugin uses the [Iconify] API to automatically download icons specified by arbitrary value, so you do not need to install an icon set in advance.
+This plugin automatically downloads icons from the [Iconify API] when specified using [Tailwind CSS]'s [arbitrary values] syntax. No need to install icon sets in advance.
+
+## Quick Start
+
+#### 1. Install
+
+```sh
+npm i -D @achamaro/tailwindcss-iconify-icon
+```
+
+#### 2. Configure
+
+tailwind.config.ts
+
+```typescript
+// Add plugin
+import icon from "@achamaro/tailwindcss-iconify-icon";
+
+export default {
+  plugins: [icon()],
+};
+```
+
+#### 3. Use
+
+```html
+<!-- Use Iconify icon -->
+<i className="i-[simple-icons/iconify]"></i>
+
+<!-- Use custom SVG -->
+<i className="i-[my-custom/icon]"></i>
+```
 
 ## Installation
 
@@ -16,7 +50,28 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 ## Configuration
 
-tailwind.config.js
+<details open>
+<summary>tailwind.config.ts</summary>
+
+```typescript
+import icon from "@achamaro/tailwindcss-iconify-icon";
+
+export default {
+  // ...
+
+  plugins: [
+    // ...
+    icon({
+      // options
+    }),
+  ],
+};
+```
+
+</details>
+
+<details>
+<summary>tailwind.config.js</summary>
 
 ```javascript
 /** @type {import('tailwindcss').Config} */
@@ -30,6 +85,8 @@ module.exports = {
 };
 ```
 
+</details>
+
 ## Options
 
 ### iconDir
@@ -37,27 +94,32 @@ module.exports = {
 - **Type**: `string`
 - **Default**: `src/assets/icons`
 
-The directory for downloading icon files and storing arbitrary SVG files.
-`i-[custom/icon]` will display `src/assets/icons/custom/icon.svg` if the SVG file exists.
+Directory for storing icon files. You can place two types of icons:
+
+1. Icons downloaded from Iconify API
+   - Example: `src/assets/icons/simple-icons/iconify.svg`
+2. Custom SVG files
+   - SVG files placed in `src/assets/icons/my-custom/icon.svg` can be displayed with `i-[my-custom/icon]`
+   - Custom SVGs can be placed in any directory name
 
 ### prefix
 
 - **Type**: `string`
 - **Default**: `"i"`
 
-Class name prefix.
+Class name prefix
 
 ### extraProperties
 
 - **Type**: `Record<string, string>`
 - **Default**: `{ display: "inline-block" }`
 
-By default, the following styles are applied:
+The following styles are set by default.
+These styles are basic CSS settings required for proper icon display.
+You can override these with this parameter.
 
 ```css
-[class^="{prefix}-["],
-[class*=" {prefix}-["],
-[class*=":{prefix}-["] {
+:where([class^="{prefix}-["], [class*=" {prefix}-["], [class*=":{prefix}-["]) {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   mask-size: 100% 100%;
@@ -66,40 +128,13 @@ By default, the following styles are applied:
 }
 ```
 
-This parameter can be used to override them.
-
 ### enableSuggestion
 
 - **Type**: `boolean`
 - **Default**: `false`
 
-Enable icon suggestions.
-
-### downloadDir (deprecated)
-
-This option is deprecated and will be removed in future versions. Please use `iconDir` instead.
-
-- **Type**: `string`
-- **Default**: `src/assets/icons`
-
-The directory for downloading icon files.
-
-### customSvg (deprecated)
-
-This option is deprecated and will be removed in future versions. Please use `iconDir` instead.
-
-- **Type**: `Record<string, string>`
-- **Default**: `{}`
-
-This is a map of the Icon Set Name and the directory where SVG files are stored.
-
-If specified as follows:
-
-```
-{ custom: "src/assets/custom" }
-```
-
-`i-[custom/icon]` will display `src/assets/custom/icon.svg`
+When this parameter is enabled, the plugin sets icon names to the `values` of the second argument of `matchUtilities`.
+Keep this `false` if you're using the VSCode extension introduced below.
 
 ## Usage
 
@@ -113,20 +148,25 @@ If specified as follows:
 #### modifier
 
 - **Type**: `mask | bg`
+  - mask: Icon color can be controlled with CSS (color)
+  - bg: Original icon color is preserved
 - **Default**: `null`
 
-Specify `background-image` or `mask-image` explicitly.
+Specifies whether to set the icon as `background-image` or `mask-image`.
 
 ### Example
 
 ```html
+<!-- Control icon color with CSS (default) -->
 <i className="i-[simple-icons/iconify]"></i>
+
+<!-- Preserve original icon color -->
 <i className="i-[simple-icons/iconify]/bg"></i>
 ```
 
 ## Other
 
-### Plugin for tailwind-merge
+### [tailwind merge] Plugin
 
 ```typescript
 import { extendTailwindMerge } from "tailwind-merge";
@@ -135,11 +175,11 @@ import twMergeIconifyIcon from "@achamaro/tailwindcss-iconify-icon/tailwind-merg
 const twMerge = extendTailwindMerge(twMergeIconifyIcon());
 ```
 
-### VSCode Intellisense
+### VSCode Extension
 
-If you set `enableSuggestion` to `true`, the VSCode extension `Tailwind CSS IntelliSense` will display the icons that exist at the time tailwind.config.js is loaded as candidates. If you want to display the newly added icons as candidates, please run Reload Window from the Command Palette.
+[TailwindCSS Iconify Icon IntelliSense](https://marketplace.visualstudio.com/items?itemName=achamaro.tailwindcss-iconify-icon-intellisense).
 
-Alternatively, you can use the [TailwindCSS Iconify Icon IntelliSense](https://marketplace.visualstudio.com/items?itemName=achamaro.tailwindcss-iconify-icon-intellisense).
+Provides icon name completion and replaces icon names with actual icon images in decorations.
 
 ![tailwindcss-iconify-icon-intellisense](tailwindcss-iconify-icon-intellisense.png)
 
