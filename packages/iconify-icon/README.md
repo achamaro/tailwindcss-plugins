@@ -21,16 +21,22 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 #### 2. Configure
 
-tailwind.config.ts
+Plugin configuration (TypeScript/JavaScript)
 
 ```typescript
-// Add plugin
 import icon from "@achamaro/tailwindcss-iconify-icon";
 
-export default {
-  plugins: [icon()],
-};
+export default icon();
 ```
+
+Load plugin (CSS)
+
+```css
+/* Specify relative path from css file */
+@plugin "../tailwind/plugins/icon";
+```
+
+For Tailwind CSS v3, please refer to [Method 2: tailwind.config](#Method-2:-Config-File "tailwind.config").
 
 #### 3. Use
 
@@ -49,6 +55,27 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 ```
 
 ## Configuration
+
+The plugin can be configured in two ways:
+
+### Method 1: @plugin (Tailwind CSS v4)
+
+Plugin configuration (TypeScript/JavaScript)
+
+```typescript
+import icon from "@achamaro/tailwindcss-iconify-icon";
+
+export default icon();
+```
+
+Load plugin (CSS)
+
+```css
+/* Specify relative path from css file */
+@plugin "../tailwind/plugins/icon";
+```
+
+### Method 2: Config File (tailwind.config)
 
 <details open>
 <summary>tailwind.config.ts</summary>
@@ -86,6 +113,13 @@ module.exports = {
 ```
 
 </details>
+
+When using Tailwind CSS v4, you need to load the config file in CSS:
+
+```css
+/* Specify relative path from css file */
+@config '../tailwind.config';
+```
 
 ## Options
 

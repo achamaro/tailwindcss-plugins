@@ -11,7 +11,7 @@
 
 このプラグインを使用すると、[Tailwind CSS]の[arbitrary values]記法でアイコンを指定するだけで、[Iconify API]から自動的にアイコンがダウンロードされます。アイコンセットを事前にインストールする必要はありません。
 
-## Quick Start
+## クイックスタート
 
 #### 1. インストール
 
@@ -21,16 +21,22 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 #### 2. 設定
 
-tailwind.config.ts
+プラグインの設定（TypeScript/JavaScript）
 
 ```typescript
-// プラグインを追加
 import icon from "@achamaro/tailwindcss-iconify-icon";
 
-export default {
-  plugins: [icon()],
-};
+export default icon();
 ```
+
+プラグインを読み込む（CSS）
+
+```css
+/* cssファイルからの相対パスを指定 */
+@plugin "../tailwind/plugins/icon";
+```
+
+Tailwind CSS v3の場合は [方法2: tailwind.config.ts](#方法2:-設定ファイル（tailwind.config）) を参照してください。
 
 #### 3. 使用
 
@@ -42,13 +48,36 @@ export default {
 <i className="i-[my-custom/icon]"></i>
 ```
 
-## Installation
+## インストール
 
 ```sh
 npm i -D @achamaro/tailwindcss-iconify-icon
 ```
 
-## Configuration
+## 設定
+
+プラグインは以下のいずれかの方法で設定できます：
+
+### 方法1: @plugin（Tailwind CSS v4）
+
+プラグインの設定（TypeScript/JavaScript）
+
+```typescript
+import icon from "@achamaro/tailwindcss-iconify-icon";
+
+export default icon({
+  // options
+});
+```
+
+プラグインを読み込む（CSS）
+
+```css
+/* cssファイルからの相対パスを指定 */
+@plugin "../tailwind/plugins/icon";
+```
+
+### 方法2: 設定ファイル（tailwind.config）
 
 <details open>
 <summary>tailwind.config.ts</summary>
@@ -87,7 +116,14 @@ module.exports = {
 
 </details>
 
-## Options
+Tailwind CSS v4 の場合は設定ファイルをCSSから読み込みます。
+
+```css
+/* cssファイルからの相対パスを指定 */
+@config '../tailwind.config';
+```
+
+## オプション
 
 ### iconDir
 
@@ -128,15 +164,7 @@ module.exports = {
 }
 ```
 
-### enableSuggestion
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-このパラメータを有効にするとプラグインは `matchUtilities` の第二引数の `values` にアイコン名を設定します。
-下のほうで紹介している VSCode 拡張を使用する場合は `false` のままにしてください。
-
-## Usage
+## 使い方
 
 ### Syntax
 
@@ -154,7 +182,7 @@ module.exports = {
 
 `background-image` または `mask-image` のどちらでアイコンを表示するかを指定します。
 
-### Example
+### 例
 
 ```html
 <!-- アイコンの色をCSSで制御（デフォルト） -->
@@ -164,7 +192,7 @@ module.exports = {
 <i className="i-[simple-icons/iconify]/bg"></i>
 ```
 
-## Other
+## その他
 
 ### [tailwind merge] プラグイン
 
