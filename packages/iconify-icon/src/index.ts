@@ -36,12 +36,12 @@ export default function IconifyIconPlugin({
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  return plugin(({ addUtilities, matchUtilities }) => {
+  return plugin(({ addBase, matchUtilities }) => {
     const values = !enableSuggestion
       ? undefined
       : Object.fromEntries(iconNames(dir).map((v) => [`[${v}]`, v]));
 
-    addUtilities({
+    addBase({
       [`:where([class^="${prefix}-["],[class*=" ${prefix}-["],[class*=":${prefix}-["])`]:
         {
           "background-size": "100% 100%",
@@ -130,7 +130,7 @@ export default function IconifyIconPlugin({
           mask: "mask",
           bg: "bg",
         },
-      }
+      },
     );
   });
 }
