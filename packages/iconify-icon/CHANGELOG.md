@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.5.2
+
+### Patch Changes
+
+- b723bfb: fix: resolve addUtilities error in Tailwind CSS v4
+
 ## 0.5.1
 
 ### Patch Changes
