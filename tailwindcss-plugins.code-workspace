@@ -12,6 +12,9 @@
     },
     {
       "path": "examples/nextjs"
+    },
+    {
+      "path": "examples/tailwind4"
     }
   ],
   "settings": {
