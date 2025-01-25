@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.5.4
+
+### Patch Changes
+
+- 6219c88: docs: fix broken section links in README
+
 ## 0.5.3
 
 ### Patch Changes
