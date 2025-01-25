@@ -162,14 +162,6 @@ You can override these with this parameter.
 }
 ```
 
-### enableSuggestion
-
-- **Type**: `boolean`
-- **Default**: `false`
-
-When this parameter is enabled, the plugin sets icon names to the `values` of the second argument of `matchUtilities`.
-Keep this `false` if you're using the VSCode extension introduced below.
-
 ## Usage
 
 ### Syntax
