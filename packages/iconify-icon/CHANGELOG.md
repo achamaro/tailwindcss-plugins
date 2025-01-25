@@ -1,5 +1,12 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.5.3
+
+### Patch Changes
+
+- 7a781fb: docs: remove deprecated options from documentation
+- d00fe65: docs: update documentation for v4 plugin configuration
+
 ## 0.5.2
 
 ### Patch Changes
