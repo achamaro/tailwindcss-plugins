@@ -36,7 +36,7 @@ Load plugin (CSS)
 @plugin "../tailwind/plugins/icon";
 ```
 
-For Tailwind CSS v3, please refer to [Method 2: tailwind.config](#Method-2:-Config-File "tailwind.config").
+For Tailwind CSS v3, please refer to [Method 2: tailwind.config](#method-2-config-file-tailwindconfig).
 
 #### 3. Use
 

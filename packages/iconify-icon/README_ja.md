@@ -36,7 +36,7 @@ export default icon();
 @plugin "../tailwind/plugins/icon";
 ```
 
-Tailwind CSS v3の場合は [方法2: tailwind.config.ts](#方法2:-設定ファイル（tailwind.config）) を参照してください。
+Tailwind CSS v3の場合は [方法2: tailwind.config.ts](#方法2-設定ファイルtailwindconfig) を参照してください。
 
 #### 3. 使用
 
