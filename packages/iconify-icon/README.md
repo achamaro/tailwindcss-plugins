@@ -21,19 +21,10 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 #### 2. Configure
 
-Plugin configuration (TypeScript/JavaScript)
-
-```typescript
-import icon from "@achamaro/tailwindcss-iconify-icon";
-
-export default icon();
-```
-
-Load plugin (CSS)
-
 ```css
-/* Specify relative path from css file */
-@plugin "../tailwind/plugins/icon";
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon";
 ```
 
 For Tailwind CSS v3, please refer to [Method 2: tailwind.config](#method-2-config-file-tailwindconfig).
@@ -58,21 +49,27 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 The plugin can be configured in two ways:
 
-### Method 1: @plugin (Tailwind CSS v4)
-
-Plugin configuration (TypeScript/JavaScript)
-
-```typescript
-import icon from "@achamaro/tailwindcss-iconify-icon";
-
-export default icon();
-```
-
-Load plugin (CSS)
+### Method 1: @plugin (CSS-first configuration)
 
 ```css
-/* Specify relative path from css file */
-@plugin "../tailwind/plugins/icon";
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon";
+```
+
+To specify options:
+
+```css
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon" {
+  /* iconDir */
+  icon-dir: "src/my/icons";
+
+  /* extraProperties */
+  height: 1.5em;
+  margin-inline: 4px;
+}
 ```
 
 ### Method 2: Config File (tailwind.config)
@@ -114,19 +111,12 @@ module.exports = {
 
 </details>
 
-When using Tailwind CSS v4, you need to load the config file in CSS:
-
-```css
-/* Specify relative path from css file */
-@config '../tailwind.config';
-```
-
 ## Options
 
-### iconDir
+### iconDir / icon-dir
 
 - **Type**: `string`
-- **Default**: `src/assets/icons`
+- **Default**: `{src,app}/assets/icons`
 
 Directory for storing icon files. You can place two types of icons:
 
@@ -135,6 +125,8 @@ Directory for storing icon files. You can place two types of icons:
 2. Custom SVG files
    - SVG files placed in `src/assets/icons/my-custom/icon.svg` can be displayed with `i-[my-custom/icon]`
    - Custom SVGs can be placed in any directory name
+
+If this option is not specified, the default directory is `app/assets/icons` if the `app` directory exists, otherwise `src/assets/icons`.
 
 ### prefix
 
@@ -159,6 +151,20 @@ You can override these with this parameter.
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
   height: 1em;
+}
+```
+
+In CSS-first configuration, all properties except options are treated as `extraProperties`.
+
+```css
+@plugin "@achamaro/tailwindcss-iconify-icon" {
+  /* options */
+  icon-dir: "src/my/icons";
+  prefix: "i";
+
+  /* extraProperties */
+  height: 1.5em;
+  margin-inline: 4px;
 }
 ```
 

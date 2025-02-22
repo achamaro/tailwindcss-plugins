@@ -21,19 +21,10 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 #### 2. 設定
 
-プラグインの設定（TypeScript/JavaScript）
-
-```typescript
-import icon from "@achamaro/tailwindcss-iconify-icon";
-
-export default icon();
-```
-
-プラグインを読み込む（CSS）
-
 ```css
-/* cssファイルからの相対パスを指定 */
-@plugin "../tailwind/plugins/icon";
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon";
 ```
 
 Tailwind CSS v3の場合は [方法2: tailwind.config.ts](#方法2-設定ファイルtailwindconfig) を参照してください。
@@ -58,23 +49,27 @@ npm i -D @achamaro/tailwindcss-iconify-icon
 
 プラグインは以下のいずれかの方法で設定できます：
 
-### 方法1: @plugin（Tailwind CSS v4）
-
-プラグインの設定（TypeScript/JavaScript）
-
-```typescript
-import icon from "@achamaro/tailwindcss-iconify-icon";
-
-export default icon({
-  // options
-});
-```
-
-プラグインを読み込む（CSS）
+### 方法1: @plugin（CSS-first configuration）
 
 ```css
-/* cssファイルからの相対パスを指定 */
-@plugin "../tailwind/plugins/icon";
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon";
+```
+
+オプションを指定する場合：
+
+```css
+@import "tailwindcss";
+
+@plugin "@achamaro/tailwindcss-iconify-icon" {
+  /* iconDir */
+  icon-dir: "src/my/icons";
+
+  /* extraProperties */
+  height: 1.5em;
+  margin-inline: 4px;
+}
 ```
 
 ### 方法2: 設定ファイル（tailwind.config）
@@ -116,19 +111,12 @@ module.exports = {
 
 </details>
 
-Tailwind CSS v4 の場合は設定ファイルをCSSから読み込みます。
-
-```css
-/* cssファイルからの相対パスを指定 */
-@config '../tailwind.config';
-```
-
 ## オプション
 
-### iconDir
+### iconDir / icon-dir
 
 - **Type**: `string`
-- **Default**: `src/assets/icons`
+- **Default**: `{src,app}/assets/icons`
 
 アイコンファイルを格納するディレクトリ。以下の2種類のアイコンを配置できます:
 
@@ -137,6 +125,8 @@ Tailwind CSS v4 の場合は設定ファイルをCSSから読み込みます。
 2. カスタムSVGファイル
    - `src/assets/icons/my-custom/icon.svg` に置いた SVG ファイルは `i-[my-custom/icon]` で表示できます。
    - カスタムSVGは任意のディレクトリ名で配置できます
+
+このオプションを指定しない場合のデフォルトのディレクトリは、 `app` ディレクトリがある場合は `app/assets/icons` ない場合は `src/assets/icons` です。
 
 ### prefix
 
@@ -161,6 +151,20 @@ Tailwind CSS v4 の場合は設定ファイルをCSSから読み込みます。
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
   height: 1em;
+}
+```
+
+CSS-first configuration ではオプション以外のすべてのプロパティを `extraProperties` として扱います。
+
+```css
+@plugin "@achamaro/tailwindcss-iconify-icon" {
+  /* options */
+  icon-dir: "src/my/icons";
+  prefix: "i";
+
+  /* extraProperties */
+  height: 1.5em;
+  margin-inline: 4px;
 }
 ```
 
