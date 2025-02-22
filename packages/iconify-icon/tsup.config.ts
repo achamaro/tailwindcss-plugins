@@ -7,6 +7,7 @@ export default defineConfig({
     "src/tailwind-merge-plugin.ts",
   ],
   format: ["cjs", "esm"],
+  shims: true,
   dts: {
     resolve: true,
   },
