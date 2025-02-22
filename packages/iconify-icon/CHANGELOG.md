@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.6.0
+
+### Minor Changes
+
+- 248df9d: support CSS-first configuration
+
 ## 0.5.4
 
 ### Patch Changes
