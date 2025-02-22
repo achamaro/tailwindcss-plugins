@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.6.1
+
+### Patch Changes
+
+- efed577: fix: Added shims to tsup config to resolve \_\_dirname is not defined error
+
 ## 0.6.0
 
 ### Minor Changes
