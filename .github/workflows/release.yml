@@ -12,10 +12,6 @@ permissions:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-env:
-  CI: true
-  PNPM_CACHE_FOLDER: .pnpm-store
-
 jobs:
   release:
     name: Release
@@ -24,18 +20,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v5
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-
-      - name: corepack enable pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      # - name: setup pnpm config
-      #   run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+          cache: "pnpm"
 
       - name: install dependencies
         run: pnpm install
