@@ -27,23 +27,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./tailwind-merge-plugin": {
-      "types": "./dist/tailwind-merge-plugin.d.ts",
-      "import": "./dist/tailwind-merge-plugin.js",
-      "require": "./dist/tailwind-merge-plugin.cjs"
     }
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "tailwind-merge-plugin": [
-        "dist/tailwind-merge-plugin.d.ts"
-      ]
-    }
-  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
@@ -51,10 +39,10 @@
   },
   "dependencies": {
     "fast-glob": "^3.3.2",
-    "svgo": "^3.3.2",
-    "tailwind-merge": "^2.6.0"
+    "svgo": "^3.3.2"
   },
   "devDependencies": {
+    "@types/node": "^20.2.5",
     "eslint-config-custom": "workspace:*",
     "iconify-icon": "^2.2.0",
     "prettier": "^3.4.2",
@@ -65,13 +53,9 @@
     "vitest": "^2.1.8"
   },
   "peerDependencies": {
-    "tailwind-merge": "*",
     "tailwindcss": "*"
   },
   "peerDependenciesMeta": {
-    "tailwind-merge": {
-      "optional": true
-    },
     "tailwindcss": {
       "optional": true
     }

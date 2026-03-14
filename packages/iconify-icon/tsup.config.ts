@@ -4,7 +4,6 @@ export default defineConfig({
   entry: [
     "src/index.ts",
     "src/fetch-script.ts",
-    "src/tailwind-merge-plugin.ts",
   ],
   format: ["cjs", "esm"],
   shims: true,

@@ -1,7 +1,6 @@
 import fs from "fs";
 import { resolve } from "path";
 import plugin from "tailwindcss/plugin";
-import { CSSRuleObject } from "tailwindcss/types/config";
 import { node } from "utility/node-sync";
 
 import { generateSvgDataUri, parseSvg } from "./svg";
@@ -61,7 +60,7 @@ const icon = plugin.withOptions<IconifyIconPluginOptions>(
               return {};
             }
 
-            const rule: CSSRuleObject = {};
+            const rule: Record<string, string> = {};
 
             let mask = true;
             let data = "";

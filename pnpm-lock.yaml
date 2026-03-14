@@ -100,9 +100,6 @@ importers:
       svgo:
         specifier: ^3.3.2
         version: 3.3.2
-      tailwind-merge:
-        specifier: ^2.6.0
-        version: 2.6.0
     devDependencies:
       eslint-config-custom:
         specifier: workspace:*
