@@ -12,19 +12,7 @@ export function generateSvgDataUri(icon: IconData) {
 
 export function parseSvg(svg: string) {
   const { data } = optimize(svg, {
-    plugins: [
-      {
-        name: "preset-default",
-        params: {
-          overrides: {
-            removeViewBox: false,
-          },
-        },
-      },
-      {
-        name: "removeDimensions",
-      },
-    ],
+    plugins: ["preset-default", "removeDimensions"],
   });
 
   const viewBox = data.match(/viewBox=['"]([0-9 ,]+)/i)?.[1] ?? "0 0 1 1";
