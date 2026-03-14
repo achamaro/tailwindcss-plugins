@@ -198,14 +198,25 @@ Specifies whether to set the icon as `background-image` or `mask-image`.
 
 ## Other
 
-### [tailwind merge] Plugin
+### [tailwind merge] Configuration
 
 ```typescript
-import { extendTailwindMerge } from "tailwind-merge";
-import twMergeIconifyIcon from "@achamaro/tailwindcss-iconify-icon/tailwind-merge-plugin";
+import { extendTailwindMerge, validators } from "tailwind-merge";
 
-const twMerge = extendTailwindMerge(twMergeIconifyIcon());
+// Class group IDs to add to tailwind-merge
+// e.g. type AdditionalClassGroupIDs = "class-a" | "class-b"
+type AdditionalClassGroupIDs = "i";
+
+const twMerge = extendTailwindMerge<AdditionalClassGroupIDs>({
+  extend: {
+    classGroups: {
+      i: [{ i: [validators.isArbitraryValue] }],
+    },
+  },
+});
 ```
+
+If you changed the prefix, replace `i` with your custom prefix.
 
 ### VSCode Extension
 

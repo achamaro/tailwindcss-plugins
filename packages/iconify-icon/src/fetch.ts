@@ -1,3 +1,7 @@
+/*
+ * fs: Cache fetched icon data as JSON files in the local icon directory.
+ * fetch (via utility/request): Download icon data from Iconify API (https://api.iconify.design).
+ */
 import fs from "fs";
 import type { IconifyIcon, IconifyJSON } from "iconify-icon";
 import { resolve } from "path";
