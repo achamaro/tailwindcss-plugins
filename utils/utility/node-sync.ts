@@ -1,3 +1,4 @@
+/* child_process: Spawn a Node.js subprocess to run the fetch script synchronously. */
 import { spawnSync, SpawnSyncOptions } from "child_process";
 
 export function node(

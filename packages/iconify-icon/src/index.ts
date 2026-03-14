@@ -1,3 +1,9 @@
+/*
+ * fs: Read/write local SVG icon files in the icon directory.
+ * child_process (via node-sync): Spawn a subprocess to synchronously fetch icon data from Iconify API (https://api.iconify.design),
+ *   since Tailwind CSS plugins do not support async operations (matchUtilities does not await async callbacks).
+ * process.env.VSCODE_PID: Skip file writes and network requests when running inside VSCode extensions.
+ */
 import fs from "fs";
 import { resolve } from "path";
 import plugin from "tailwindcss/plugin";
