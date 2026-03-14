@@ -1,5 +1,11 @@
 # @achamaro/tailwindcss-iconify-icon
 
+## 0.7.0
+
+### Minor Changes
+
+- 2fbff4e: Remove tailwind-merge plugin and update development environment
+
 ## 0.6.1
 
 ### Patch Changes
